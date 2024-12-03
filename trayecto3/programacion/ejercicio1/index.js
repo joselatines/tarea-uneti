@@ -29,9 +29,9 @@ app.get("/", (req, res) => {
                     <form action="/show-animal" method="post">
                         <div class="mb-4">
                             <label for="animal" class="block text-gray-700">Ingresa el nombre de tu animal favorito:</label>
-                            <!-- Input con validaciones: mínimo 3 caracteres, máximo 20, solo letras -->
-                            <input type="text" id="animal" name="animal" required minlength="3" maxlength="20" pattern="[A-Za-z]+" class="mt-1 p-2 border border-gray-300 rounded w-full">
-                            <small class="text-gray-500">Solo letras, entre 3 y 20 caracteres.</small>
+                            <!-- Input con validaciones: mínimo 3 caracteres, máximo 50, solo letras -->
+                            <input type="text" id="animal" name="animal" required minlength="3" maxlength="50" pattern="[A-Za-z]+" class="mt-1 p-2 border border-gray-300 rounded w-full">
+                            <small class="text-gray-500">Solo letras, entre 3 y 50 caracteres.</small>
                         </div>
                         <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Enviar</button>
                     </form>
@@ -46,8 +46,8 @@ app.post("/show-animal", (req, res) => {
   // Obtener el nombre del animal favorito del formulario (de la request)
 	const favoriteAnimal = req.body.animal;
 
-  // Verificar que el nombre tenga entre 3 y 20 caracteres y solo contenga letras
-  const isValid = /^[A-Za-z]{3,20}$/.test(favoriteAnimal);
+  // Verificar que el nombre tenga entre 3 y 50 caracteres y solo contenga letras
+  const isValid = /^[A-Za-z]{3,50}$/.test(favoriteAnimal);
 
   if (!isValid) {
     // Si no es válido, enviar un mensaje de error
@@ -60,7 +60,7 @@ app.post("/show-animal", (req, res) => {
             <body class="bg-gray-100 flex items-center justify-center h-screen">
                 <div class="bg-white p-8 rounded shadow-md w-1/3">
                     <h1 class="text-2xl font-bold mb-4">Error</h1>
-                    <p class="text-red-500">El nombre del animal debe contener solo letras y tener entre 3 y 20 caracteres.</p>
+                    <p class="text-red-500">El nombre del animal debe contener solo letras y tener entre 3 y 50 caracteres.</p>
                     <a href="/" class="text-blue-500 hover:underline mt-4 block">Volver</a>
                 </div>
             </body>
