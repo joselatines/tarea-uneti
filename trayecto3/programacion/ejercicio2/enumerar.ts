@@ -22,7 +22,9 @@ enum PaisPelicula {
 // Función para mostrar los valores de un enum
 function mostrarValoresEnum<T>(enumerado: T, nombre: string): void {
 	console.log(`Valores del enum ${nombre}:`);
+	// Recorremos el enum para mostrar los valores
 	for (const valor in enumerado) {
+		// Comprobamos si el valor no es un número
 		if (isNaN(Number(valor))) {
 			console.log(`- ${enumerado[valor as keyof T]}`);
 		}
