@@ -1,0 +1,79 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Officer {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  badgeNumber   String    @unique
+  firstName     String
+  lastName      String
+  rank          String
+  imageUrl      String?   // Optional officer photo
+  department    Department @relation(fields: [departmentId], references: [id])
+  departmentId  String    @db.ObjectId
+  cases         Case[]
+  status        String    // Active, On Leave, Retired
+  joinDate      DateTime
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Department {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  location    String
+  chief       String
+  officers    Officer[]
+  cases       Case[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Case {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  caseNumber  String    @unique
+  title       String
+  description String
+  status      String    // Open, Closed, Under Investigation
+  priority    String    // High, Medium, Low
+  officer     Officer   @relation(fields: [officerId], references: [id])
+  officerId   String    @db.ObjectId
+  department  Department @relation(fields: [departmentId], references: [id])
+  departmentId String   @db.ObjectId
+  evidence    Evidence[]
+  suspects    Suspect[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Evidence {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  type        String
+  description String
+  location    String
+  imageUrl    String    // Required evidence photo
+  case        Case      @relation(fields: [caseId], references: [id])
+  caseId      String    @db.ObjectId
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Suspect {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  firstName   String
+  lastName    String
+  age         Int
+  description String
+  imageUrl    String?   // Optional suspect photo
+  status      String    // Wanted, In Custody, Released
+  case        Case      @relation(fields: [caseId], references: [id])
+  caseId      String    @db.ObjectId
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}

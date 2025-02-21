@@ -1,0 +1,70 @@
+@baseUrl = http://localhost:3000/api
+
+### Crear sospechoso (usar ID de caso existente)
+POST {{baseUrl}}/suspects
+Content-Type: application/json
+
+{
+    "firstName": "Pedro",
+    "lastName": "González",
+    "age": 35,
+    "description": "1.75m, cabello negro, cicatriz en mejilla derecha",
+    "imageUrl": "https://ejemplo.com/sospechosos/pedro.jpg",
+    "status": "Buscado",
+    "caseId": "67aeaad70e7ecdf974895bc2"
+}
+
+### Crear otro sospechoso
+POST {{baseUrl}}/suspects
+Content-Type: application/json
+
+{
+    "firstName": "María",
+    "lastName": "López",
+    "age": 28,
+    "description": "1.65m, cabello castaño, tatuaje en brazo derecho",
+    "status": "En Custodia",
+    "caseId": "[ID_CASO]"
+}
+
+### Obtener todos los sospechosos
+GET {{baseUrl}}/suspects
+
+### Obtener sospechoso por ID (reemplazar ID)
+GET {{baseUrl}}/suspects/[ID_SOSPECHOSO]
+
+### Actualizar sospechoso (reemplazar ID)
+PUT {{baseUrl}}/suspects/[ID_SOSPECHOSO]
+Content-Type: application/json
+
+{
+    "status": "En Custodia",
+    "description": "1.75m, cabello negro, cicatriz en mejilla derecha. Identificado por testigos.",
+    "imageUrl": "https://ejemplo.com/sospechosos/pedro_actualizado.jpg"
+}
+
+### Actualizar estado del sospechoso (reemplazar ID)
+PUT {{baseUrl}}/suspects/[ID_SOSPECHOSO]
+Content-Type: application/json
+
+{
+    "status": "Liberado",
+    "description": "Liberado por falta de pruebas"
+}
+
+### Eliminar sospechoso (reemplazar ID)
+DELETE {{baseUrl}}/suspects/[ID_SOSPECHOSO]
+
+### Crear sospechoso con información detallada
+POST {{baseUrl}}/suspects
+Content-Type: application/json
+
+{
+    "firstName": "Roberto",
+    "lastName": "Sánchez",
+    "age": 42,
+    "description": "1.80m, complexión robusta, calvo, barba negra, múltiples tatuajes en ambos brazos",
+    "imageUrl": "https://ejemplo.com/sospechosos/roberto.jpg",
+    "status": "Buscado",
+    "caseId": "[ID_CASO]"
+}

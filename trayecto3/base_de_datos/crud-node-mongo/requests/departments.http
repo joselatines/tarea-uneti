@@ -1,0 +1,39 @@
+@baseUrl = http://localhost:3000/api
+
+### Crear departamento
+POST {{baseUrl}}/departments
+Content-Type: application/json
+
+{
+    "name": "Homicidios",
+    "location": "Piso 3, Edificio Central",
+    "chief": "Juan Pérez"
+}
+
+### Crear otro departamento
+POST {{baseUrl}}/departments
+Content-Type: application/json
+
+{
+    "name": "Narcóticos",
+    "location": "Piso 2, Edificio Central",
+    "chief": "María Gómez"
+}
+
+### Obtener todos los departamentos
+GET {{baseUrl}}/departments
+
+### Obtener departamento por ID (reemplazar ID)
+GET {{baseUrl}}/departments/[ID_DEPARTAMENTO]
+
+### Actualizar departamento (reemplazar ID)
+PUT {{baseUrl}}/departments/[ID_DEPARTAMENTO]
+Content-Type: application/json
+
+{
+    "name": "Homicidios y Violencia",
+    "chief": "Roberto Sánchez"
+}
+
+### Eliminar departamento (reemplazar ID)
+DELETE {{baseUrl}}/departments/[ID_DEPARTAMENTO]

@@ -1,0 +1,58 @@
+@baseUrl = http://localhost:3000/api
+
+### Crear oficial (primero crear un departamento y usar su ID)
+POST {{baseUrl}}/officers
+Content-Type: application/json
+
+{
+    "badgeNumber": "PO123",
+    "firstName": "Carlos",
+    "lastName": "Rodríguez",
+    "rank": "Detective",
+    "imageUrl": "https://ejemplo.com/fotos/carlos.jpg",
+    "departmentId": "67aeaa670e7ecdf974895bbf",
+    "status": "Activo",
+    "joinDate": "2024-02-13"
+}
+
+### Crear otro oficial
+POST {{baseUrl}}/officers
+Content-Type: application/json
+
+{
+    "badgeNumber": "PO124",
+    "firstName": "Ana",
+    "lastName": "Martínez",
+    "rank": "Sargento",
+    "departmentId": "[ID_DEPARTAMENTO]",
+    "status": "Activo",
+    "joinDate": "2024-01-15"
+}
+
+### Obtener todos los oficiales
+GET {{baseUrl}}/officers
+
+### Obtener oficial por ID (reemplazar ID)
+GET {{baseUrl}}/officers/[ID_OFICIAL]
+
+### Actualizar oficial (reemplazar ID)
+PUT {{baseUrl}}/officers/[ID_OFICIAL]
+Content-Type: application/json
+
+{
+    "rank": "Teniente",
+    "status": "Activo",
+    "imageUrl": "https://ejemplo.com/fotos/carlos_nuevo.jpg"
+}
+
+### Actualizar oficial sin imagen (reemplazar ID)
+PUT {{baseUrl}}/officers/[ID_OFICIAL]
+Content-Type: application/json
+
+{
+    "rank": "Capitán",
+    "status": "Permiso"
+}
+
+### Eliminar oficial (reemplazar ID)
+DELETE {{baseUrl}}/officers/[ID_OFICIAL]

@@ -1,0 +1,92 @@
+@baseUrl = http://localhost:3000/api
+
+### Crear caso (usar IDs existentes de oficial y departamento)
+POST {{baseUrl}}/cases
+Content-Type: application/json
+
+{
+    "caseNumber": "CASE-2024-001",
+    "title": "Robo en Banco Central",
+    "description": "Asalto armado al banco central el día 13 de febrero",
+    "status": "Abierto",
+    "priority": "Alta",
+    "officerId": "67aeaabd0e7ecdf974895bc1",
+    "departmentId": "67aeaa670e7ecdf974895bbf"
+}
+
+### Crear otro caso
+POST {{baseUrl}}/cases
+Content-Type: application/json
+
+{
+    "caseNumber": "CASE-2024-002",
+    "title": "Vandalismo en Plaza Central",
+    "description": "Daños a propiedad pública en la plaza central",
+    "status": "Abierto",
+    "priority": "Media",
+    "officerId": "[ID_OFICIAL]",
+    "departmentId": "[ID_DEPARTAMENTO]"
+}
+
+### Obtener todos los casos
+GET {{baseUrl}}/cases
+
+### Obtener caso por ID (reemplazar ID)
+GET {{baseUrl}}/cases/[ID_CASO]
+
+### Actualizar caso (reemplazar ID)
+PUT {{baseUrl}}/cases/[ID_CASO]
+Content-Type: application/json
+
+{
+    "status": "En Progreso",
+    "priority": "Alta",
+    "description": "Asalto armado al banco central. Nuevas evidencias encontradas."
+}
+
+### Actualizar estado del caso (reemplazar ID)
+PUT {{baseUrl}}/cases/[ID_CASO]
+Content-Type: application/json
+
+{
+    "status": "Cerrado"
+}
+
+### Eliminar caso (reemplazar ID)
+DELETE {{baseUrl}}/cases/[ID_CASO]
+
+### Crear caso con evidencias y sospechosos
+POST {{baseUrl}}/cases
+Content-Type: application/json
+
+{
+    "caseNumber": "CASE-2024-003",
+    "title": "Robo de Vehículo",
+    "description": "Robo de vehículo en estacionamiento público",
+    "status": "Abierto",
+    "priority": "Media",
+    "officerId": "[ID_OFICIAL]",
+    "departmentId": "[ID_DEPARTAMENTO]",
+    "evidence": {
+        "create": [
+            {
+                "name": "Cámara de Seguridad",
+                "type": "Video",
+                "description": "Grabación del momento del robo",
+                "location": "Servidor Central",
+                "imageUrl": "https://ejemplo.com/evidencias/video1.jpg"
+            }
+        ]
+    },
+    "suspects": {
+        "create": [
+            {
+                "firstName": "Juan",
+                "lastName": "Desconocido",
+                "age": 30,
+                "description": "Aproximadamente 1.75m, vestía de negro",
+                "status": "Buscado"
+            }
+        ]
+    }
+}

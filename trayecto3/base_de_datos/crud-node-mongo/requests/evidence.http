@@ -1,0 +1,66 @@
+@baseUrl = http://localhost:3000/api
+
+### Crear evidencia (usar ID de caso existente)
+POST {{baseUrl}}/evidence
+Content-Type: application/json
+
+{
+    "name": "Arma encontrada",
+    "type": "Arma de fuego",
+    "description": "Pistola 9mm encontrada en la escena",
+    "location": "Almacén de evidencias A-123",
+    "imageUrl": "https://ejemplo.com/evidencias/arma1.jpg",
+    "caseId": "67aeaad70e7ecdf974895bc2"
+}
+
+### Crear otra evidencia
+POST {{baseUrl}}/evidence
+Content-Type: application/json
+
+{
+    "name": "Huellas digitales",
+    "type": "Forense",
+    "description": "Huellas encontradas en la puerta principal",
+    "location": "Laboratorio forense",
+    "imageUrl": "https://ejemplo.com/evidencias/huellas1.jpg",
+    "caseId": "[ID_CASO]"
+}
+
+### Obtener todas las evidencias
+GET {{baseUrl}}/evidence
+
+### Obtener evidencia por ID (reemplazar ID)
+GET {{baseUrl}}/evidence/[ID_EVIDENCIA]
+
+### Actualizar evidencia (reemplazar ID)
+PUT {{baseUrl}}/evidence/[ID_EVIDENCIA]
+Content-Type: application/json
+
+{
+    "description": "Pistola 9mm encontrada en la escena. Análisis balístico completado.",
+    "imageUrl": "https://ejemplo.com/evidencias/arma1_actualizada.jpg"
+}
+
+### Actualizar ubicación de evidencia (reemplazar ID)
+PUT {{baseUrl}}/evidence/[ID_EVIDENCIA]
+Content-Type: application/json
+
+{
+    "location": "Bóveda de evidencias B-45"
+}
+
+### Eliminar evidencia (reemplazar ID)
+DELETE {{baseUrl}}/evidence/[ID_EVIDENCIA]
+
+### Crear evidencia con múltiples fotos
+POST {{baseUrl}}/evidence
+Content-Type: application/json
+
+{
+    "name": "Escena del crimen",
+    "type": "Fotografías",
+    "description": "Conjunto de fotografías de la escena",
+    "location": "Servidor de evidencias digitales",
+    "imageUrl": "https://ejemplo.com/evidencias/escena_principal.jpg",
+    "caseId": "[ID_CASO]"
+}
